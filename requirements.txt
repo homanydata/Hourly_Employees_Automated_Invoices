@@ -1,2 +1,6 @@
 pandas
-reportlib
+openpyxl
+reportlab
+arabic-reshaper
+python-bidi
+pyinstaller
