@@ -12,6 +12,13 @@ class Enums:
         directory = current_dir / 'records.xlsx'
         return directory
     
+    def Month_Summary_Excel():
+        month = datetime.datetime.now().month
+        year = datetime.datetime.now().year
+        current_dir = Path(__file__).parent if '__file__' in locals() else Path.cwd()
+        directory = current_dir / f'{month}-{year}_summary_excel.xlsx'
+        return directory
+    
     def PDF_Path():
         month = datetime.datetime.now().month
         year = datetime.datetime.now().year

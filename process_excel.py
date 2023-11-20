@@ -59,12 +59,22 @@ def get_summary_as_text(df):
 
     return text_lines
 
+def get_month_summary():
+    try:
+        df = read_excel_file()
+    except:
+        return Errors.Empty_Excel_File
+    summary = df[['Name','Material','Duration']].groupby(['Name','Material']).sum().reset_index()
+    summary = summary.rename(columns={'Name':'المدرّس','Material':'المادة','Duration':'عدد الحصص'})
+    summary_excel_dir = Enums.Month_Summary_Excel()
+    summary.to_excel(summary_excel_dir, index=False)
+    return "Summary Saved as Excel"
 
 def insert_record(values:dict):
     try:
         date = datetime.date(year=values['Year'],month=values['Month'],day=values['Day'])
     except:
-        return Errors.Invalid_Data
+        return Errors.Invalid_Date
     try:
         start = datetime.time(hour=values['Start-Hour'],minute=values['Start-Min'])
     except Exception as e:

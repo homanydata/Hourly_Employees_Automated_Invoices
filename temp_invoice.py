@@ -54,9 +54,7 @@ def create_invoice(df, names):
         c.setFont("Arabic", 14)
         c.drawString(indentation - 10, 85, f'{total_wage:,}')
         
-        # new page for another teacher
-        if index != len(names) - 1:
-            c.showPage()
+        c.showPage()
     try:
         c.save()
     except PermissionError:

@@ -1,7 +1,7 @@
 # from pathlib import Path
 import datetime
 import PySimpleGUI as sg
-from process_excel import insert_record
+from process_excel import insert_record, get_month_summary
 from generate_invoices import generate
 from lookups import Enums
 
@@ -53,7 +53,7 @@ layout = [
     [sg.Text('')],
     [sg.Column(time_layout, element_justification='right', expand_x=True)],
     [sg.Text('')],
-    [sg.Submit(), sg.Button('Clear'), sg.Button('Generate'), sg.Exit()]
+    [sg.Submit(), sg.Button('Clear'), sg.Button('Generate'), sg.Button('Summary'), sg.Exit()]
 ]
 
 window = sg.Window('Simple data entry form', layout, size=(1000,550), font=font)
@@ -78,8 +78,11 @@ while True:
         clear_input()
     if event == 'Submit':
         result = insert_record(values)
-        sg.popup(result)
+        sg.popup(result, custom_text='مشكور')
     if event == 'Generate':
         result = generate()
-        sg.popup(result)
+        sg.popup(result, custom_text='مشكور')
+    if event == 'Summary':
+        result = get_month_summary()
+        sg.popup(result, custom_text='مشكور')
 window.close()

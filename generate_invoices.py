@@ -1,6 +1,5 @@
 from process_excel import read_excel_file, get_all_teachers_names
 from temp_invoice import create_invoice
-from lookups import Enums
 
 def generate():
     try:
